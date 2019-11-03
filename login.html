@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="card" id="form-card">
+                <h1 id="form-title">LOGIN</h1>
+                <form action="#" method="post" class="form-group">
+                    <input type="text" name="id" placeholder="ID" class="form-control">
+                    <input type="password" name="pswd" placeholder="password" class="form-control">
+                    <input type="submit" name="submit" value="submit" class="btn btn-primary">
+                    <input type="button" name="register" value="register" onclick="location.href='register.html'" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+        
+    </body>
+    <style>
+        
+        /* ::-webkit-input-placeholder {text-align: center;}
+        :-moz-placeholder {text-align: center;}
+        ::-moz-placeholder {text-align: center;}
+        :-ms-input-placeholder {text-align: center;}  */
+
+        /*form*/
+        #form-card{width: 400px; margin-left: auto;margin:100px auto auto auto;}
+        #form-title{margin:auto ;}
+        input[name="id"],input[name="pswd"]{width:90%;margin:auto auto;}
+        input[name="submit"],input[name="register"]{margin-top:1em;}
+        input[name="submit"]{margin-left:5% ;}
+        input[name="register"]{margin-left:50%;}
+    </style>
+</html>
