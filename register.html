@@ -1,11 +1,112 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script></head>
     <body>
+        <!--
+            nama
+            course
+            email
+            id
+            password
+        -->
+        <div class="container">
+                
+            <div class="card" id="form-card">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" id="student" onclick="toggleTab('student')">Student</a></li>
+                    <li class="nav-item"><a class="nav-link" id="lecturer" onclick="toggleTab('lecturer')">Lecturer</a></li>
+                </ul>
+                <div class="card-header">
+                    <h1 id="form-title"> SIGN UP</h1>
+                </div>
+                <form action="#" method="post" class="form-group">
+                    <input type="text" name="name" placeholder="name" class="form-control" required>
+                    <input type="email" name="email" placeholder="email" class="form-control" required>
+                    <input type="number" name="id" placeholder="id" class="form-control">
+                    <select name="course" class="form-control" required>
+                        <option value="" selected id="default">Select Course</option>
+                    </select>
+                    <input type="password" name="pswd" placeholder="password" class="form-control" value="" required>
+                    <div class="pswd">
+                        <p class="lenght">must be more than 8 character</p>
+                        <p class="special">must have one special character</p>
+                    </div>
+                    
+                    <input type="password" name="confirm-pswd" placeholder="confirm password" class="form-control" required onkeyup="confirmPassword()"> 
+                    <input type="submit" value="sign up" name="sign up" class="btn btn-primary">
+                    
+                </form>
+            </div>
+        </div>
         
     </body>
+    <style>
+        #form-card{width: 400px; margin-left: auto;margin:100px auto auto auto;}
+        
+        #form-card input,#form-card select {margin:auto; margin-top:0.5em;}
+        #form-card input:not(.btn),#form-card select{width:90%;}
+        #form-card input.btn{margin-left: 5%;}
+        #form-card .pswd{font-size: 0.8em;margin-left: 8%;margin-top:0 ;}
+        #form-card input[name="confirm-pswd"]:focus {border-color: rgba(236, 56, 56, 0.8);box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(236, 56, 56, 0.8);outline: 0 none;}
+        
+    </style>
+    <script>
+        //toggle tab
+        function toggleTab(clickedTab){
+            console.log("toggled");
+            $("#form-card .nav-link").removeClass("active");
+            $(`#form-card #${clickedTab}`).addClass("active");
+            var select = "";
+            if(clickedTab == "student")select="Select course";
+            if(clickedTab == "lecturer")select="Select department";
+            $("#form-card #default").html(select);
+
+            //TODO add type as hidden value to send to database
+            //TODO get diiferent thing from database base on type
+        }
+
+        //password check
+        //is password lenght more than 8
+        var isPswdRequirementMet = false;
+        $("#form-card input[name='pswd']").on("keyup",(event)=>{
+            $("#form-card .pswd .lenght").css("color",(pswdLenght() ? "green" : "red"));
+            $("#form-card .pswd .special").css("color",(pswdSpecial() ? "green" : "red"));
+            isPswdRequirementMet = pswdLenght() && pswdSpecial();
+        });
+        function pswdLenght(){
+            let pswd = $("#form-card input[name='pswd']").val();
+            return pswd.length >= 8;
+        }
+        function pswdSpecial(){
+            let pswd = $("#form-card input[name='pswd']").val();
+            return pswd.match(/[!@#$%^&*(),.?":{}|<>]/) != null;
+        }
+        
+
+        //confirm password
+        $("#form-card input[name='confirm-pswd']").on("keyup",(event)=>{
+            // .uneditable-input:focus {   
+            //     border-color: rgba(126, 239, 104, 0.8); //rgba(236, 56, 56, 0.8)
+            //     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(126, 239, 104, 0.6); ///rgba(236, 56, 56, 0.8)
+            //     outline: 0 none;
+            // }
+            let rgba = (confirmPassword() ? "rgba(126, 239, 104, 0.8)" : "rgba(236, 56, 56, 0.8)");
+            $("#form-card input[name='confirm-pswd']").css("border-color",rgba);
+            $("#form-card input[name='confirm-pswd']").css("box-shadow",`0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px ${rgba}`);
+
+        })
+        function confirmPassword(){
+            return $("#form-card input[name='pswd']").val() === $("#form-card input[name='confirm-pswd']").val(); 
+        }
+
+        
+
+
+    </script>
 </html>
