@@ -1,8 +1,8 @@
 <?php
     $id = "localhost";
-    $user = "host";
+    $user = "root";
     $pswd = "";
     $db = "demportal";
 
-    $conn = new sqli($id,$user,$pswd,$db);
+    $conn = new mysqli($id,$user,$pswd,$db);
 ?>

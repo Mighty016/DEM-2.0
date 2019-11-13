@@ -25,11 +25,11 @@
                 <div class="card-header">
                     <h1 id="form-title"> SIGN UP</h1>
                 </div>
-                <form action="#" method="post" class="form-group">
+                <form action="registerProcess.php" method="post" class="form-group">
                     <input type="text" name="name" placeholder="name" class="form-control" required>
                     <input type="email" name="email" placeholder="email" class="form-control" required>
                     <input type="number" name="id" placeholder="id" class="form-control">
-                    <select name="course" class="form-control" required>
+                    <select name="course" class="form-control" onload="getDepartment()" required>
                         <option value="" selected id="default">Select Course</option>
                     </select>
                     <input type="password" name="pswd" placeholder="password" class="form-control" value="" required>
@@ -40,6 +40,7 @@
                     
                     <input type="password" name="confirm-pswd" placeholder="confirm password" class="form-control" required onkeyup="confirmPassword()"> 
                     <input type="submit" value="sign up" name="sign up" class="btn btn-primary">
+                    <input type="hidden" name="type" value="400">
                     
                 </form>
             </div>
@@ -64,10 +65,12 @@
             console.log("toggled");
             $("#form-card .nav-link").removeClass("active");
             $(`#form-card #${clickedTab}`).addClass("active");
-            var select = "";
-            if(clickedTab == "student")select="Select course";
-            if(clickedTab == "lecturer")select="Select department";
+            var select = "";var type="";
+            if(clickedTab == "student"){select="Select course";type="400"}
+
+            if(clickedTab == "lecturer"){select="Select department";type="300"}
             $("#form-card #default").html(select);
+            $("#form-card input[name='type']").val(type);
 
             //TODO add type as hidden value to send to database
             //TODO get diiferent thing from database base on type
@@ -106,6 +109,19 @@
         function confirmPassword(){
             return $("#form-card input[name='pswd']").val() === $("#form-card input[name='confirm-pswd']").val(); 
         }
+
+        
+        //add course && department
+        $.getJSON("getDepartment.php",function(data){
+            console.log(data);
+            
+            data.forEach(element => {
+                var html = $("#form-card select").html();
+                $("#form-card select").html(html + `<option value="${element.departmentID}">${element.departmentDesc}</option>`);
+            });
+            
+        });
+  
 
         
 
