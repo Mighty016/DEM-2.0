@@ -21,6 +21,9 @@
                 <div class="card-footer">
                     <p id="sign-up">New to DEM Protal sign up <a href="register.html">here</a></p>
                 </div>
+                <div class="alert alert-danger" role="alert" id="error">
+                    
+                </div>
                 
             </div>
         </div>
@@ -39,12 +42,28 @@
         input[name="id"],input[name="pswd"]{width:90%;margin:auto auto;}
         input[name="submit"]{margin-left:5% ; margin-top:1em;}
         #sign-up{margin-left: 5%;}
+        #form-card #error{display: none;}
         
     </style>
     <script>
-        // $("input[name='submit']").on("click",(event)=>{
-        //     event.preventDefault();
-        //     location.href = "feed.html";
-        // });
+        $("input[name='submit']").on("click",(event)=>{
+            event.preventDefault();
+            $.post("loginProcess.php",{
+                pswd:$("#form-card input[name='pswd']").val(),
+                id:$("#form-card input[name='id']").val()
+            },(data)=>{
+                console.log(data);
+                try{
+                    var userData = JSON.parse(data)[0];
+                    console.log(userData);
+                    if( typeof userData != "object") throw "ERROR :<br />"+userData
+                    localStorage.setItem("userData",JSON.stringify(userData));
+                    window.location.href = "feed.html";
+                }catch(e){
+                    $("#form-card #error").html(e);
+                    $("#form-card #error").css("display","block");
+                }
+            })
+        });
     </script>
 </html>

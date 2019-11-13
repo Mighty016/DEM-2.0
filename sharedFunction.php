@@ -24,7 +24,7 @@ function userLogin ( &$userID, &$userPwd) {
         $_SESSION['userData'] = $outputs;
         $_SESSION['timestamp'] = time();
     } 
-    else $outputs['error']=array(["login failed"]);
+    else $outputs="login failed - id or password is incorrect <br/>";
     return $outputs;
 }
 ?>

@@ -29,7 +29,7 @@
                     <input type="text" name="name" placeholder="name" class="form-control" required>
                     <input type="email" name="email" placeholder="email" class="form-control" required>
                     <input type="number" name="id" placeholder="id" class="form-control">
-                    <select name="course" class="form-control" onload="getDepartment()" required>
+                    <select name="course" class="form-control"  required>
                         <option value="" selected id="default">Select Course</option>
                     </select>
                     <input type="password" name="pswd" placeholder="password" class="form-control" value="" required>
@@ -110,7 +110,7 @@
             return $("#form-card input[name='pswd']").val() === $("#form-card input[name='confirm-pswd']").val(); 
         }
 
-        
+
         //add course && department
         $.getJSON("getDepartment.php",function(data){
             console.log(data);
@@ -120,6 +120,30 @@
                 $("#form-card select").html(html + `<option value="${element.departmentID}">${element.departmentDesc}</option>`);
             });
             
+        });
+
+        $("input[name='sign up']").on("click",(event)=>{
+            event.preventDefault();
+            $.post("registerProcess.php",{
+                pswd:$("#form-card input[name='pswd']").val(),
+                id:$("#form-card input[name='id']").val(),
+                name:$("#form-card input[name='name']").val(),
+                course:$("#form-card select[name='course']").val(),
+                type:$("#form-card input[name='type']").val(),
+                email:$("#form-card input[name='email']").val(),
+            },(data)=>{
+                console.log(data);
+                try{
+                    var userData = JSON.parse(data)[0];
+                    console.log(userData);
+                    if( typeof userData != "object") throw "ERROR :<br />"+userData
+                    localStorage.setItem("userData",JSON.stringify(userData));
+                    window.location.href = "feed.html";
+                }catch(e){
+                    $("#form-card #error").html(e);
+                    $("#form-card #error").css("display","block");
+                }
+            })
         });
   
 

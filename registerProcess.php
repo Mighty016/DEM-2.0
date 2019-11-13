@@ -29,7 +29,7 @@
 
     $result = $stmt->get_result();  
     if($result->num_rows > 0) {
-        $output['error'] = array("user already registered");
+        echo "user already registered <br />";
         //$output['error'][] = "this user has registered";
     }
     else{
@@ -47,11 +47,7 @@
         $userPic= "haha";
         $stmt1->execute();
         
-        $loginData = userLogin($id,$pswd);
-        if(isset($loginData['error'])){
-            $loginData['error'][] = "login failed";
-        }
-       
+        $loginData = userLogin($id,$pswd);       
         $output = $loginData;
         
     }
