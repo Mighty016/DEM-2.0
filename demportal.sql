@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 12, 2019 at 05:23 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.9
+-- Generation Time: Nov 13, 2019 at 03:41 PM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -50,7 +50,8 @@ CREATE TABLE `club` (
   `clubLogo` varchar(225) DEFAULT NULL,
   `clubName` varchar(225) NOT NULL,
   `clubPwd` varchar(225) NOT NULL,
-  `clubStatus` int(11) NOT NULL
+  `clubStatus` int(11) NOT NULL,
+  `clubEmail` varchar(80) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -88,7 +89,7 @@ INSERT INTO `department` (`departmentID`, `departmentDesc`) VALUES
 CREATE TABLE `feed` (
   `feedID` int(11) NOT NULL,
   `feedPic` varchar(225) DEFAULT NULL,
-  `feedDesc` longtext DEFAULT NULL,
+  `feedDesc` longtext,
   `actID` int(11) DEFAULT NULL,
   `clubID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -106,8 +107,17 @@ CREATE TABLE `userinfo` (
   `email` varchar(255) NOT NULL,
   `userStatus` int(11) NOT NULL,
   `deptID` varchar(5) NOT NULL,
-  `userType` int(11) NOT NULL
+  `userType` int(11) NOT NULL,
+  `userPicture` varchar(225) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `userinfo`
+--
+
+INSERT INTO `userinfo` (`userID`, `userPwd`, `userName`, `email`, `userStatus`, `deptID`, `userType`, `userPicture`) VALUES
+(2017258933, 'be42db569535723ea827970790d00cfb', 'Danial', 'alifrstam00@gmail.com', 1, '00002', 400, 'haha'),
+(2017258934, '83faaa7a6dda48ac9baef4f90e69bb29', 'Muhammad Alif Danial bin Rustam', 'alifrustam00@gmail.com', 1, 'CS110', 400, 'haha');
 
 -- --------------------------------------------------------
 

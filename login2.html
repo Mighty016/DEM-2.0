@@ -11,9 +11,9 @@
     <body>
         <div class="container">
             <div class="card" id="form-card">
-                <div class="card-header"><img src="..\dem2.0\images\DEM.png" width="70%" height="70%"><h1 id="form-title">LOGIN</h1></div>
-                
-                <form action="loginProcess.php" method="post" class="form-group card-body">
+                <div class="card-header"><img src="images/DEM.png" width="70%" height="70%"><br><h1 id="form-title">LOGIN</h1></div>
+
+                <form action="" method="post" class="form-group card-body">
                     <input type="text" name="id" placeholder="UiTM ID" class="form-control">
                     <input type="password" name="pswd" placeholder="Password" class="form-control">
                     <input type="submit" name="submit" value="Log In" class="btn btn-primary">
@@ -21,16 +21,13 @@
                 <div class="card-footer">
                     <p id="sign-up">New to DEM Protal? Sign up <a href="register.html">HERE</a></p>
                 </div>
-                <div class="alert alert-danger" role="alert" id="error">
-                    
-                </div>
-                
+
             </div>
         </div>
-        
+
     </body>
     <style>
-        
+
         /* ::-webkit-input-placeholder {text-align: center;}
         :-moz-placeholder {text-align: center;}
         ::-moz-placeholder {text-align: center;}
@@ -42,14 +39,20 @@
         input[name="id"],input[name="pswd"]{width:90%;margin:auto auto;}
         input[name="submit"]{margin-left:5% ; margin-top:1em;}
         #sign-up{margin-left: 5%;}
-        #form-card #error{display: none;}
+
+        body {
+            background-image: url('images/Raub.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
 
         img {
             display: block;
             margin-left: auto;
             margin-right: auto;
         }
-        
+
     </style>
     <script>
         $("input[name='submit']").on("click",(event)=>{
@@ -62,12 +65,14 @@
                 try{
                     var userData = JSON.parse(data)[0];
                     console.log(userData);
-                    if( typeof userData != "object") throw "ERROR :<br />"+userData
-                    localStorage.setItem("userData",JSON.stringify(userData));
-                    window.location.href = "feed.html";
+                    if( typeof userData != "object") throw "ERROR : "+userData
+                    else{
+                      localStorage.setItem("userData",JSON.stringify(userData));
+                      window.location.href = "feed.html";
+                    }
+
                 }catch(e){
-                    $("#form-card #error").html(e);
-                    $("#form-card #error").css("display","block");
+                    alert(e);
                 }
             })
         });

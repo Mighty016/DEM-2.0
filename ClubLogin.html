@@ -11,19 +11,13 @@
     <body>
         <div class="container">
             <div class="card" id="form-card">
-                <div class="card-header"><img src="..\dem2.0\images\DEM.png" width="70%" height="70%"><h1 id="form-title">LOGIN</h1></div>
+                <div class="card-header"><img src="..\dem2.0\images\DEM.png" width="70%" height="70%"><br><h1 id="form-title">CLUB LOGIN</h1></div>
                 
-                <form action="loginProcess.php" method="post" class="form-group card-body">
-                    <input type="text" name="id" placeholder="UiTM ID" class="form-control">
-                    <input type="password" name="pswd" placeholder="Password" class="form-control">
+                <form action="" method="post" class="form-group card-body">
+                    <input type="text" id="clubid" name="clubid" placeholder="Club ID" class="form-control">
+                    <input type="password" id="clubpswd" name="clubpswd" placeholder="Club Password" class="form-control">
                     <input type="submit" name="submit" value="Log In" class="btn btn-primary">
                 </form>
-                <div class="card-footer">
-                    <p id="sign-up">New to DEM Protal? Sign up <a href="register.html">HERE</a></p>
-                </div>
-                <div class="alert alert-danger" role="alert" id="error">
-                    
-                </div>
                 
             </div>
         </div>
@@ -42,7 +36,13 @@
         input[name="id"],input[name="pswd"]{width:90%;margin:auto auto;}
         input[name="submit"]{margin-left:5% ; margin-top:1em;}
         #sign-up{margin-left: 5%;}
-        #form-card #error{display: none;}
+
+        body {
+            background-image: url('Raub.jpg');
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
 
         img {
             display: block;
@@ -54,22 +54,7 @@
     <script>
         $("input[name='submit']").on("click",(event)=>{
             event.preventDefault();
-            $.post("loginProcess.php",{
-                pswd:$("#form-card input[name='pswd']").val(),
-                id:$("#form-card input[name='id']").val()
-            },(data)=>{
-                console.log(data);
-                try{
-                    var userData = JSON.parse(data)[0];
-                    console.log(userData);
-                    if( typeof userData != "object") throw "ERROR :<br />"+userData
-                    localStorage.setItem("userData",JSON.stringify(userData));
-                    window.location.href = "feed.html";
-                }catch(e){
-                    $("#form-card #error").html(e);
-                    $("#form-card #error").css("display","block");
-                }
-            })
+            location.href = "feed.html";
         });
     </script>
 </html>

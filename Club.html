@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+
+
+<style>
+        body {
+            background-color: #000000;
+        }
+
+        .othersimg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+
+            opacity: 1;
+            display: block;
+            height: auto;
+            transition: .5s ease;
+            backface-visibility: hidden;
+        }
+
+        .middle {
+        transition: .3s ease;
+        opacity: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+        color:rgb(255, 255, 255);
+
+        }
+
+        .card:hover .middle {
+        opacity: 1;
+        transition: .3s ease;
+        }
+
+        .card:hover .othersimg{
+        opacity: 0.3;
+        transition: .3s ease;
+        }
+
+        .text {
+        color: rgb(0, 0, 0);
+         font-size: 20px;
+        padding: 16px 32px;
+        }
+
+        .h7 {
+            font-size: 0.8rem;
+        }
+
+        .gedf-wrapper {
+            margin-top: 0.97rem;
+        }
+
+        @media (min-width: 992px) {
+            .gedf-main {
+                padding-left: 4rem;
+                padding-right: 4rem;
+            }
+            .gedf-card {
+                margin-bottom: 2.77rem;
+            }
+        }
+
+        /**Reset Bootstrap*/
+        .dropdown-toggle::after {
+            content: none;
+        }
+
+        .nav-link::after{
+        content: "";
+        display: block;
+        width: 0;
+        height: 3px;
+        background: rgb(0, 0, 0);
+        transition: width .3s;
+        }
+        .nav-link:hover::after{
+        width: 100%;
+        transition: width .3s;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            position: relative;
+            background-color: #fefefe;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 80%;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
+
+        /* Add Animation */
+        @-webkit-keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+        }
+
+        @keyframes animatetop {
+          from {top:-300px; opacity:0}
+          to {top:0; opacity:1}
+        }
+
+        /* The Close Button */
+        .close {
+          color: rgb(0, 0, 0);
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+        </style>
+    </head>
+    <body>
+        <!-- A vertical navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="feed.html"><img src="..\dem2.0\images\demlogo.png" width="55px" height="55px"></a>
+            <hr style="width: 1px; height: 35px; background: rgb(53, 53, 53); border: none;" />
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="feed.html">Home<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Calendar</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="Club.html"><b>Club</b></a>
+                    </li>
+                <!--<li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li> -->
+                <!--<li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                </li> -->
+                </ul>
+                <!-- <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form> -->
+
+                <li style="list-style-type:none">
+                    <form class="form-inline">
+                    <div class="input-group">
+                        <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+                </li>
+            </div>
+
+        </nav>
+
+
+<!--<nav class="navbar navbar-light bg-white">
+        <a href="#" class="navbar-brand">Bootsbook</a>
+        <form class="form-inline">
+            <div class="input-group">
+                <input type="text" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="button" id="button-addon2">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nav> -->
+
+    <!--CLUB CARD-->
+    <h1 align="center" style="color:white">UiTM Raub Club List</h1>
+    <hr/>
+    <div class="container-fluid gedf-wrapper">
+        <div class="row" id="clubList">
+
+            <div class="col-md-3" id="myAddBtn">
+                <div class="card gedf-card">
+                    <div class="card-body">
+                        <div id="ClubLogo"><img class="othersimg" src="..\dem2.0\images\plusicon.png" width="49%" height="49%"></div>
+                    </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <div id="ClubName" class="h4" align="center">New Club</div>
+                    </li>
+                </ul>
+                <div class="middle">
+                    <div class="text"><b>Click To Add New Club</b></div>
+                  </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+
+            <!-- Club Info Modal -->
+            <div id="ClubModal" class="modal">
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class="card-header">
+                        <span class="close">&times;</span>
+                        <h1 align="center">Club's Information</h1>
+                    </div>
+                    <div class="card-body">
+                        <div id="ClubModalLogo"><img class="othersimg" src="..\dem2.0\images\HACLOGO.png" width="15%" height="15%"></div>
+                        <div ><h2 align="center"id="ClubModalName">High Achievers' Club</h2></div>
+                        <div class="text-muted"><h4 align="center" id="ClubModalEmail">HAC@gmail.com</h4></div>
+
+                        <hr/>
+                        <h2 align="center">Club's Description</h2><br>
+                        <div ><p class="card-text" id="ClubModalInfo" align="center">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo recusandae nulla rem eos ipsa praesentium esse magnam nemo dolor
+                                sequi fuga quia quaerat cum, obcaecati hic, molestias minima iste voluptates.<p></div>
+
+                        <hr/>
+                        <h2 align="center">Club's Organization Charts</h2><br>
+                        <div class="card-footer">
+                            <input align="center" type="button" onclick="location.href='EditClub.html'" id="clubUpdate" value="Update Info" class="btn btn-primary" style="display:none">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- The Modal -->
+            <div id="AddClubModal" class="modal">
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <div class="card-header">
+                            <span class="close">&times;</span>
+                            <h1 align="center">Club Login</h1>
+                        </div>
+                        <div class="card-body">
+                        <form  method="post">
+                            <input type="text" id="RegisterClubName" name="ClubName" placeholder="Club Name" class="form-control"><br>
+                            <input type="email" id="RegisterClubEmail" name="ClubEmail" placeholder="Club Email" class="form-control"><br>
+                            <input type="password" id="RegisterClubPswd" name="ClubPswd" placeholder="Club Password" class="form-control">
+
+                        </div>
+                        <div class="card-footer">
+                            <input type="button" id="registerClub" name="submit" value="Add Club" class="btn btn-primary" >
+                        </form>
+                        </div>
+                    </div>
+
+                </div>
+    </body>
+
+    <script>
+
+    // Get the modal
+    var modal = document.getElementById("ClubModal");
+
+    // Get the button that opens the modal
+    // var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close");
+
+    // When the user clicks the button, open the modal
+    // btn.onclick = function() {
+    //     modal.style.display = "block";
+    // }
+    $(".myBtn").on("click",()=>{
+      modal.style.display = "block";
+      $("#clubUpdate").css("display","none");
+    })
+
+    // When the user clicks on <span> (x), close the modal
+
+        // span.onclick = function() {
+        //     modal.style.display = "none";
+        //     AddModal.style.display = "none";
+        // }
+    $(".close").on("click",()=>{
+        modal.style.display = "none";
+        $("#clubUpdate").css("display","none");
+        AddModal.style.display = "none";
+    });
+
+    // Get the modal
+    var AddModal = document.getElementById("AddClubModal");
+
+    // Get the button that opens the modal
+    var Addbtn = document.getElementById("myAddBtn");
+
+    // When the user clicks the button, open the modal
+    Addbtn.onclick = function() {
+        AddModal.style.display = "block";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+        $("#clubUpdate").css("display","none");
+      }
+      if (event.target == AddModal) {
+        AddModal.style.display = "none";
+      }
+    }
+
+
+    //club register
+    $("#registerClub").on("click",(event)=>{
+        let clubName = $("#RegisterClubName").val();
+        let clubPswd = $("#RegisterClubPswd").val();
+        let clubEmail = $("#RegisterClubEmail").val();
+
+        console.log("name : ",clubName);
+        console.log("pwsd : ",clubPswd);
+        console.log("email : ",clubEmail);
+        $.post("registerClub.php",{
+            clubName:clubName,
+            clubEmail:clubEmail,
+            clubPswd:clubPswd
+        },(data)=>{
+            console.log(data);
+
+        });
+    });
+    var clubdata = null;
+    function getClubData(){
+      try {
+        clubData = JSON.parse(localStorage.getItem("clubData"));
+        console.log(typeof clubData,clubData);
+        // console.log("userdata : ",);
+      } catch (e) {
+        alert(e);
+      }
+    }getClubData();
+
+    var clubList = null;
+    function loadPost(){
+      $.getJSON("club.php",(data)=>{
+        console.log(typeof data,data);
+        clubList = data;
+        var html ="";
+        clubList.forEach((val,index,array)=>{
+          html += `<div class="col-md-3 myBtn" onclick="showModal(${index})">
+              <div class="card gedf-card">
+                  <div class="card-body" >
+                      <div id="ClubLogo" ><img class="othersimg" src="..\\dem2.0\\images\\HACLOGO.png" width="130px" height="130px"></div>
+
+                  </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                      <div id="ClubName" class="h4" align="center">${val.clubName}</div>
+                  </li>
+              </ul>
+              <div class="middle">
+                  <div class="text"><b>Click For More Info</b></div>
+                </div>
+              </div>
+          </div>`;
+        });
+        $("#clubList").prepend(html);
+
+
+      })
+    }loadPost();
+    function showModal(index){
+      modal.style.display = "block";
+      const{clubName,clubEmail,clubDesc} = clubList[index];
+      console.log(index);
+      $("#ClubModalName").html(clubName);
+      $("#ClubModalEmail").html(clubEmail);
+      $("#ClubModalInfo").html(clubDesc);
+      if(clubData.clubName == clubName){
+        $("#clubUpdate").css("display","block");
+      }
+    }
+
+
+
+    </script>
+
+</html>
